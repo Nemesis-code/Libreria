@@ -26,7 +26,7 @@ public class ConsultaLibros extends javax.swing.JFrame {
             tabla.setValueAt(l.autor, i, 1);
             tabla.setValueAt(l.genero, i, 2);
             tabla.setValueAt(l.precio, i, 3);
-            tabla.setValueAt(l.cantida, i, 4);
+            tabla.setValueAt(l.cantidad, i, 4);
             
         }
     
@@ -219,7 +219,7 @@ public class ConsultaLibros extends javax.swing.JFrame {
             jTextField2.setText(libro.autor);
             jTextField3.setText(libro.genero);
             jTextField4.setText(String.valueOf(libro.precio));
-            jTextField1.setText(libro.cantida);
+            jTextField5.setText(String.valueOf(libro.cantidad));
             
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -231,7 +231,7 @@ public class ConsultaLibros extends javax.swing.JFrame {
             libro.autor = jTextField2.getText();
             libro.genero = jTextField3.getText();
             libro.precio = Double.parseDouble(jTextField4.getText());
-            libro.cantida = jTextField5.getText();
+            libro.cantidad = Integer.parseInt(jTextField5.getText());
             pintarTabla();
             JOptionPane.showMessageDialog(this, "Libro modificado exitosamente");
             

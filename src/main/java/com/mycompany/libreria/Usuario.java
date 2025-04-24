@@ -4,6 +4,8 @@
  */
 package com.mycompany.libreria;
 
+import java.util.ArrayList;
+
 
 public class Usuario {
     
@@ -12,4 +14,5 @@ public class Usuario {
     public String rol;
     public String usuario;
     
+    public ArrayList<LibroVenta> librosVenta = new ArrayList<>();
 }

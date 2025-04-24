@@ -7,6 +7,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
   
     public VentanaAdministrador() {
         initComponents();
+        this.setLocationRelativeTo(null); // Esto la centra la ventana
     }
 
     /**
@@ -98,7 +99,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addComponent(jLabel1)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

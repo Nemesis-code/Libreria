@@ -8,6 +8,6 @@ public class Libro {
     public String autor;
     public String genero;
     public double precio;
-    public String cantida;
+    public int cantidad;
     
 }
