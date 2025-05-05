@@ -9,14 +9,35 @@ import javax.swing.JOptionPane;
 
 public class UsuarioNuevo extends javax.swing.JFrame {
 
+    private Usuario usuario;
 
     public UsuarioNuevo() {
         initComponents();
-        this.setLocationRelativeTo(null); // Esto la centra la ventana
-        jComboBox1.removeAllItems();
-        jComboBox1.addItem("Administrador");
-        jComboBox1.addItem("Vendedor");
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.ArmarComboBox();
     }
+    
+    public UsuarioNuevo(Usuario usuario) { 
+        
+        this.usuario = usuario;
+        initComponents();
+        this.setLocationRelativeTo(null); //centra la ventana
+        this.ArmarComboBox();
+        //llenamos los campos con su información
+        txtNombre.setText(this.usuario.nombre);
+        txtPassword.setText(this.usuario.usuario);
+        txtUsuario.setText(this.usuario.password);
+        
+       
+    }
+    
+    private void ArmarComboBox() {
+         cmbRol.removeAllItems();
+        cmbRol.addItem("Administrador");
+        cmbRol.addItem("Vendedor");
+    }
+    
+    
     private boolean validarPassword(String password){
         return password.matches(".*[a-z].*") && 
                password.matches(".*[A-Z].*") && 
@@ -24,6 +45,7 @@ public class UsuarioNuevo extends javax.swing.JFrame {
                password.length() >= 6;
     
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,13 +59,13 @@ public class UsuarioNuevo extends javax.swing.JFrame {
         btnNombre = new javax.swing.JButton();
         btnPassword = new javax.swing.JButton();
         btnUsuario = new javax.swing.JButton();
-        btnRol = new javax.swing.JButton();
+        jLabelRol = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtNombre = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        cmbRol = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +75,12 @@ public class UsuarioNuevo extends javax.swing.JFrame {
 
         btnUsuario.setText("Usuario:");
 
-        btnRol.setText("Rol:");
+        jLabelRol.setText("Rol:");
+        jLabelRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLabelRolActionPerformed(evt);
+            }
+        });
 
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -69,10 +96,10 @@ public class UsuarioNuevo extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "" }));
+        cmbRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbRolActionPerformed(evt);
             }
         });
 
@@ -82,25 +109,23 @@ public class UsuarioNuevo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCrear)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabelRol, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField3))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(btnCrear)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(24, 24, 24))
+                        .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                        .addComponent(txtPassword)
+                        .addComponent(txtUsuario)
+                        .addComponent(cmbRol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,24 +133,24 @@ public class UsuarioNuevo extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNombre)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPassword)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUsuario)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRol)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                    .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelRol))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrear)
                     .addComponent(btnSalir))
-                .addGap(27, 27, 27))
+                .addGap(47, 47, 47))
         );
 
         pack();
@@ -138,7 +163,7 @@ public class UsuarioNuevo extends javax.swing.JFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
-        String password = jTextField2.getText();
+        String password = txtPassword.getText();
 
         if (!validarPassword(password)) {
             JOptionPane.showMessageDialog(this, 
@@ -146,32 +171,44 @@ public class UsuarioNuevo extends javax.swing.JFrame {
             return; // Detiene la ejecución si la contraseña no es válida
         }
         Usuario u = new Usuario();
-        u.nombre = jTextField1.getText();
-        u.password = jTextField2.getText();
-        u.usuario = jTextField3.getText();
-        u.rol = jTextField1.getText();
+        u.nombre = txtNombre.getText();
+        u.password = txtPassword.getText();
+        u.usuario = txtUsuario.getText();
+        u.rol = txtNombre.getText();
         
-        String rol = jComboBox1.getSelectedItem().toString();
+        String rol = cmbRol.getSelectedItem().toString();
         if (rol.equals("Administrador")) {
             u.rol = "A";
         } else {
             u.rol = "V";
         }
 
-        
-        Libreria.usuarios.add(u);
-        JOptionPane.showMessageDialog(this, "Usuario creado exitosamente");
+        if (this.usuario != null) {
+            this.usuario.password = u.password;
+            for (Usuario usuariox: Libreria.usuarios) System.out.println("usuario: " + usuariox.usuario + " - pass: " + usuariox.password);
+            JOptionPane.showMessageDialog(this, "Usuario modificado exitosamente");
+
+        } else {
+             Libreria.usuarios.add(u);
+            JOptionPane.showMessageDialog(this, "Usuario creado exitosamente");
+
+        }
+       
         
         // Limpieza de los campos
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText(""); // Borra la contraseña
+        txtNombre.setText("");
+        txtPassword.setText("");
+        txtUsuario.setText(""); // Borra la contraseña
         
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmbRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmbRolActionPerformed
+
+    private void jLabelRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLabelRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelRolActionPerformed
 
  
 
@@ -179,12 +216,12 @@ public class UsuarioNuevo extends javax.swing.JFrame {
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnNombre;
     private javax.swing.JButton btnPassword;
-    private javax.swing.JButton btnRol;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnUsuario;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JComboBox<String> cmbRol;
+    private javax.swing.JButton jLabelRol;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

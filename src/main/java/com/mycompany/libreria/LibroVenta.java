@@ -11,13 +11,24 @@ package com.mycompany.libreria;
 public class LibroVenta {
     
     public String titulo;
-    public String autor;
-    public String genero;
-    public double precio;
     public int cantidad;
+    public double precio;
+    
     
     @Override
     public String toString() {
-        return titulo + " (" + genero + ") - Q" + precio;
+        return titulo + " (" + cantidad + ") - Q" + precio;
     }
+    /*
+    public libroEnVenta (String titulo, int cantidad, double precio){
+        this.titulo = titulo;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    
+    }
+    
+    public double getSubtotal() {
+        return cantidad * precio;
+    }
+    */
 }

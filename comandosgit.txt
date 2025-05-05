@@ -1,0 +1,16 @@
+flujo de trabajo con git
+
+-- sincroniza tu local con github
+git pull 
+
+-- informacion del estado del repositorio
+git status
+
+-- agregrar archivos o cambios a tu repositorio 
+git add [nombre de archivo | . ]
+
+-- comentario a tu cambio que bas a publicar
+gi commit -m "comentario"
+
+-- confirmar publicar cambios locales a tu ramas principal main
+git push

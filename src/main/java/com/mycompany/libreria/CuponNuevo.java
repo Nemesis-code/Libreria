@@ -12,7 +12,9 @@ public class CuponNuevo extends javax.swing.JFrame {
         jDateChooser1.getDateEditor().setEnabled(false);//Desactiva el campo de texto
         jComboBox1.removeAllItems();
         jComboBox1.addItem("%");
+        
         jComboBox1.addItem("Q");
+        
     }
 
     /**

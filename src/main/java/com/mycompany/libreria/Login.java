@@ -55,9 +55,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("admin");
+        jTextField1.setText("vendedor");
 
-        jTextField2.setText("admin");
+        jTextField2.setText("vendedor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,7 +76,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jTextField2)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnIngresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addComponent(btnCuenta)))
                 .addContainerGap(120, Short.MAX_VALUE))
         );

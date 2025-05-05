@@ -13,6 +13,8 @@ public class Libreria {
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
     public static ArrayList<Cupones> cupones = new ArrayList<>();
     public static ArrayList<Libro> libros = new ArrayList<>();
+    public static ArrayList<Venta> ventas = new ArrayList<>();
+    public static ArrayList<Proveedores> proveedor = new ArrayList<>();
     
     public static void main(String[] args){
         
@@ -41,33 +43,32 @@ public class Libreria {
         cupon2.tipo = "Q";
         cupon2.fecha = new Date();
         
-        LibroVenta l1 = new LibroVenta();
+        Libro l1 = new Libro();
         l1.titulo = "El Principito";
         l1.autor = "Antoine de Saint-Exupéry";
         l1.genero = "Infaltil";
-        l1.precio = 50;
-        l1.cantidad = 10;
+        l1.precio = 5;
+        l1.cantidad = 50;
         
-        LibroVenta l2 = new LibroVenta();
+        Libro l2 = new Libro();
         l2.titulo = "1984";
         l2.autor = "George Orwell";
         l2.genero = "Ciencia Ficcion";
-        l2.precio = 75;
+        l2.precio = 10;
         l2.cantidad = 5;
         
-        LibroVenta l3 = new LibroVenta();
+        Libro l3 = new Libro();
         l3.titulo = "Cien años de soledad";
         l3.autor = "Gabriel García Márquez";
         l3.genero = "Novela";
-        l3.precio = 90;
+        l3.precio = 15;
         l3.cantidad = 8;
-        
-        vendedor.librosVenta.add(l1);
-        vendedor.librosVenta.add(l2);
-        vendedor.librosVenta.add(l3);
         
         cupones.add(cupon1);
         cupones.add(cupon2);
+        libros.add(l1);
+        libros.add(l2);
+        libros.add(l3);
 
         usuarios.add(vendedor);
         
