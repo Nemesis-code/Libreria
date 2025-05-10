@@ -17,4 +17,5 @@
         <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.mycompany.libreria.Libreria</exec.mainClass>
     </properties>
+    <name>ControlLibros</name>
 </project>

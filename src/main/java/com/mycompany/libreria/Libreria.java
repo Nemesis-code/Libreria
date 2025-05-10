@@ -4,6 +4,12 @@
 
 package com.mycompany.libreria;
 
+import vistas.Login;
+import modelos.Proveedor;
+import modelos.Venta;
+import modelos.Cupon;
+import modelos.Usuario;
+import modelos.Libro;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,10 +17,10 @@ import java.util.Date;
 public class Libreria {
 
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
-    public static ArrayList<Cupones> cupones = new ArrayList<>();
+    public static ArrayList<Cupon> cupones = new ArrayList<>();
     public static ArrayList<Libro> libros = new ArrayList<>();
     public static ArrayList<Venta> ventas = new ArrayList<>();
-    public static ArrayList<Proveedores> proveedor = new ArrayList<>();
+    public static ArrayList<Proveedor> proveedores= new ArrayList<>();
     
     public static void main(String[] args){
         
@@ -26,22 +32,22 @@ public class Libreria {
         usuarios.add(admin);
         
         Usuario vendedor = new Usuario();
-        vendedor.nombre = "vendedor";
+        vendedor.nombre = "Pepe";
         vendedor.password = "vendedor";
         vendedor.rol = "V";
         vendedor.usuario = "vendedor";
         
-        Cupones cupon1 = new Cupones();
+        Cupon cupon1 = new Cupon();
         cupon1.codigo = "DESC10";
         cupon1.monto = 10;         
         cupon1.tipo = "%";        
-        cupon1.fecha = new Date(); 
+        cupon1.fechaVencimiento = new Date(); 
 
-        Cupones cupon2 = new Cupones();
+        Cupon cupon2 = new Cupon();
         cupon2.codigo = "BIENVENIDA";
         cupon2.monto = 15;
         cupon2.tipo = "Q";
-        cupon2.fecha = new Date();
+        cupon2.fechaVencimiento = new Date();
         
         Libro l1 = new Libro();
         l1.titulo = "El Principito";
