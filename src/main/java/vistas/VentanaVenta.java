@@ -150,6 +150,11 @@ public class VentanaVenta extends javax.swing.JFrame {
         });
 
         btnAplicarCupon.setText("Cupón de descuento");
+        btnAplicarCupon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicarCuponActionPerformed(evt);
+            }
+        });
 
         btnCancelarVenta.setText("Cancelar Venta");
 
@@ -164,7 +169,7 @@ public class VentanaVenta extends javax.swing.JFrame {
                         .addComponent(btnAplicarCupon)
                         .addGap(38, 38, 38)
                         .addComponent(txtCodigoCupon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 39, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -346,6 +351,10 @@ public class VentanaVenta extends javax.swing.JFrame {
     private void txtNITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNITActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNITActionPerformed
+
+    private void btnAplicarCuponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarCuponActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAplicarCuponActionPerformed
 
   
 
