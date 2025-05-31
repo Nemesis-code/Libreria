@@ -4,10 +4,10 @@
  */
 package modelos;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-
-public class Usuario {
+public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     public String nombre;
     public String password;

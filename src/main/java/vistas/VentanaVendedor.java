@@ -102,7 +102,7 @@ public class VentanaVendedor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(215, 215, 215)
                 .addComponent(lblBienvenida)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -133,16 +133,15 @@ public class VentanaVendedor extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton4)
                     .addComponent(jButton2))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        LibroNuevo l = new LibroNuevo();
-        l.setVisible(true);
+         VentanaVenta t = new VentanaVenta(usuarioActual);
+         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -154,7 +153,7 @@ public class VentanaVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        main.Libreria.guardarTodo(); // <- guarda todo en serialisable
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 

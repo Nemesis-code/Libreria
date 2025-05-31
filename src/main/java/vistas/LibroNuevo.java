@@ -1,7 +1,7 @@
 
 package vistas;
 
-import com.mycompany.libreria.Libreria;
+import main.Libreria;
 import modelos.Libro;
 import javax.swing.JOptionPane;
 
@@ -10,6 +10,11 @@ public class LibroNuevo extends javax.swing.JFrame {
   
     public LibroNuevo() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        /*cmbProveedor.removeAllItems();
+        for (modelos.Proveedor p : Libreria.proveedores) {
+            cmbProveedor.addItem(p.nombre); // o p.nit si prefieres
+        } Para agregar el proveedor */
     }
 
     /**
@@ -68,10 +73,6 @@ public class LibroNuevo extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(79, 79, 79)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -80,11 +81,15 @@ public class LibroNuevo extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                             .addComponent(jTextField4)
                             .addComponent(jTextField3)
                             .addComponent(jTextField2)
-                            .addComponent(jTextField1))))
+                            .addComponent(jTextField1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addContainerGap(162, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,11 +115,11 @@ public class LibroNuevo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -126,16 +131,19 @@ public class LibroNuevo extends javax.swing.JFrame {
         l.titulo = jTextField1.getText();
         l.autor = jTextField2.getText();
         l.genero= jTextField3.getText();
-        l.precio = Double.parseDouble(jTextField1.getText());
+        l.precio = Double.parseDouble(jTextField4.getText());
         l.cantidad = Integer.parseInt(jTextField5.getText());
+        //l.proveedor = cmbProveedor.getSelectedItem().toString(); // ← proveedor seleccionado
+
         
         Libreria.libros.add(l);
+         main.Libreria.guardarTodo(); // importante guardar
         JOptionPane.showMessageDialog(this, "Libro creado exitosamente");
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        main.Libreria.guardarTodo(); // <- guarda todo
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

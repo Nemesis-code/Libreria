@@ -4,7 +4,7 @@
  */
 package vistas;
 
-import com.mycompany.libreria.Libreria;
+import main.Libreria;
 import modelos.Venta;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,13 +21,13 @@ public class ReporteVentas extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         llenarTabla();
-        
+
     }
-    
-    private void llenarTabla(){
+
+    private void llenarTabla() {
         String[] columnas = {"Cliente", "NIT", "Dirección", "Total", "Total sin IVA", "Vendedor", "Fecha"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-        
+
         for (Venta venta : Libreria.ventas) {
             Object[] fila = new Object[7];
             fila[0] = venta.comprador;
@@ -35,14 +35,13 @@ public class ReporteVentas extends javax.swing.JFrame {
             fila[2] = venta.direccion;
             fila[3] = "Q" + venta.total;
             fila[4] = "Q" + venta.totalSinIVA;
-            fila[5] = venta.usuarioVendedor != null ? venta.usuarioVendedor.nombre: "Desconocido";
+            fila[5] = venta.usuarioVendedor != null ? venta.usuarioVendedor.nombre : "Desconocido";
             fila[6] = venta.fecha.toString();
             modelo.addRow(fila);
-            
+
         }
         jTable1.setModel(modelo);
-        
-    
+
     }
 
     /**
@@ -57,6 +56,7 @@ public class ReporteVentas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +80,13 @@ public class ReporteVentas extends javax.swing.JFrame {
             }
         });
 
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,7 +94,10 @@ public class ReporteVentas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(160, 160, 160)
+                        .addComponent(btnExportar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -97,7 +107,9 @@ public class ReporteVentas extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btnExportar))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -105,13 +117,44 @@ public class ReporteVentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        main.Libreria.guardarTodo(); // <- guarda todo
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        // TODO add your handling code here:
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Guardar reporte de ventas como CSV");
+
+        int seleccion = fileChooser.showSaveDialog(this);
+        if (seleccion == javax.swing.JFileChooser.APPROVE_OPTION) {
+            java.io.File archivo = fileChooser.getSelectedFile();
+
+            try (java.io.PrintWriter writer = new java.io.PrintWriter(archivo)) {
+                writer.println("Cliente|NIT|Dirección|Total|Total sin IVA|Vendedor|Fecha");
+
+                for (int i = 0; i < jTable1.getRowCount(); i++) {
+                    String cliente = jTable1.getValueAt(i, 0).toString();
+                    String nit = jTable1.getValueAt(i, 1).toString();
+                    String direccion = jTable1.getValueAt(i, 2).toString();
+                    String total = jTable1.getValueAt(i, 3).toString();
+                    String sinIva = jTable1.getValueAt(i, 4).toString();
+                    String vendedor = jTable1.getValueAt(i, 5).toString();
+                    String fecha = jTable1.getValueAt(i, 6).toString();
+
+                    writer.println(cliente + "|" + nit + "|" + direccion + "|" + total + "|" + sinIva + "|" + vendedor + "|" + fecha);
+                }
+
+                javax.swing.JOptionPane.showMessageDialog(this, "Reporte exportado exitosamente.");
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Error al exportar: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnExportarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

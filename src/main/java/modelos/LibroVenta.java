@@ -4,11 +4,14 @@
  */
 package modelos;
 
+import java.io.Serializable;
+
 /**
  *
  * Representa un libro específico dentro de una venta.
  */
-public class LibroVenta {
+public class LibroVenta implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     public String titulo;
     public int cantidad;

@@ -4,7 +4,7 @@
  */
 package vistas;
 
-import com.mycompany.libreria.Libreria;
+import main.Libreria;
 import modelos.Proveedor;
 import javax.swing.JOptionPane;
 
@@ -130,7 +130,7 @@ public class NuevoProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        main.Libreria.guardarTodo(); // <- guarda todo
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 

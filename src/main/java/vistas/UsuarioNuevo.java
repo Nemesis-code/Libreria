@@ -4,7 +4,7 @@
  */
 package vistas;
 
-import com.mycompany.libreria.Libreria;
+import main.Libreria;
 import modelos.Usuario;
 import javax.swing.JOptionPane;
 
@@ -159,7 +159,7 @@ public class UsuarioNuevo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        main.Libreria.guardarTodo(); // <- guarda todo
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 

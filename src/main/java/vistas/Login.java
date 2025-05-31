@@ -4,7 +4,7 @@
  */
 package vistas;
 
-import com.mycompany.libreria.Libreria;
+import main.Libreria;
 import modelos.Usuario;
 import javax.swing.JOptionPane;
 

@@ -4,9 +4,9 @@
  */
 package vistas;
 
-import com.mycompany.libreria.Libreria;
-import com.mycompany.libreria.Util.CargaUsuariosXml;
-import com.mycompany.libreria.Util.EscrituraUsuariosXml;
+import main.Libreria;
+import util.CargaUsuariosXml;
+import util.EscrituraUsuariosXml;
 import java.io.File;
 import javax.swing.JFileChooser;
 import modelos.Usuario;
@@ -302,7 +302,7 @@ public class ConsultaUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        main.Libreria.guardarTodo(); // <- guarda todo
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 

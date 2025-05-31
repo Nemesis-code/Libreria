@@ -1,7 +1,7 @@
 
 package vistas;
 
-import com.mycompany.libreria.Libreria;
+import main.Libreria;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,12 +9,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;// Para manejar fechas con un formato definido
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelos.Cupon;
+import modelos.Cupon;// Modelo de datos que representa un cupón
 
 
 
@@ -22,31 +22,45 @@ import modelos.Cupon;
 
 
 public class ConsultaCupones extends javax.swing.JFrame {
-    
+    // Formato de fecha utilizado en el sistema para los cupones (año-mes-día)
     private final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 
+    // Constructor: inicializa componentes y carga datos iniciales
     public ConsultaCupones() {
         initComponents();
-        cbTipo.removeAllItems();
+        cbTipo.removeAllItems();// Limpia el ComboBox para evitar duplicados
         cbTipo.addItem("porcentaje");
         cbTipo.addItem("monto");
         cargarTabla();
     }
+    /**
+     * Método que carga los datos de los cupones en la tabla de la interfaz gráfica.
+     * Se toma la lista de cupones de Libreria y se muestra en un JTable.
+     */
     private void cargarTabla() {
+         // Definir las columnas que tendrá la tabla
         String[] columnas = {"Código", "Monto", "Tipo", "Fecha Vencimiento"};
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // Crear modelo vacío
 
+         // Recorrer la lista de cupones y agregar cada uno como fila en la tabla
         for (Cupon c : Libreria.cupones) {
+             // Convertir la fecha a cadena, si no es nula
             String fechaStr = c.fechaVencimiento != null ? formatoFecha.format(c.fechaVencimiento) : "";
-            Object[] fila = {c.codigo, c.monto, c.tipo, fechaStr};
-            modelo.addRow(fila);
+            Object[] fila = {c.codigo, c.monto, c.tipo, fechaStr}; // Crear la fila
+            modelo.addRow(fila);// Agregarla al modelo
         }
-
+        // Establecer el modelo de la tabla con los datos cargados
         tblDatos.setModel(modelo);
     }
+    /**
+     * Método que guarda la lista actual de cupones en un archivo CSV.
+     * @param ruta Ruta del archivo donde se guardarán los datos.
+     */
     private void guardarCupones(String ruta) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(ruta))) {
+            // Escribir encabezado del archivo
             pw.println("codigo|monto|tipo|fechaVencimiento"); // encabezado
+            // Escribir cada cupón en una línea
             for (Cupon c : Libreria.cupones) {
                 String fechaStr = c.fechaVencimiento != null ? formatoFecha.format(c.fechaVencimiento) : "";
                 pw.println(c.codigo + "|" + c.monto + "|" + c.tipo + "|" + fechaStr);
@@ -55,13 +69,21 @@ public class ConsultaCupones extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al guardar el archivo: " + e.getMessage());
         }
     }
-    // Método para cargar la lista desde archivo CSV
+     /**
+     * Método que carga cupones desde un archivo CSV.
+     * Cada línea del archivo representa un cupón con los campos separados por "|".
+     * @param ruta Ruta del archivo a leer.
+     */
     private void cargarCuponesDesdeArchivo(String ruta) {
-        ArrayList<Cupon> lista = new ArrayList<>();
+        ArrayList<Cupon> lista = new ArrayList<>();// Lista temporal para cargar cupones
+        
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
-            String linea = br.readLine(); // leer encabezado
+            String linea = br.readLine(); // Leer y omitir el encabezado
+            
+             // Leer línea por línea el contenido del archivo
             while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split("\\|");
+                String[] partes = linea.split("\\|"); // Separar por el delimitador |
+                
                 if (partes.length >= 4) {
                     Cupon c = new Cupon();
                     c.codigo = partes[0].trim();
@@ -70,12 +92,12 @@ public class ConsultaCupones extends javax.swing.JFrame {
                     try {
                         c.fechaVencimiento = formatoFecha.parse(partes[3].trim());
                     } catch (ParseException e) {
-                        c.fechaVencimiento = null;
+                        c.fechaVencimiento = null;// Si hay error de formato, se deja la fecha en null
                     }
-                    lista.add(c);
+                    lista.add(c);// Agregar cupón a la lista
                 }
             }
-            Libreria.cupones = lista;
+            Libreria.cupones = lista;// Reemplazar la lista original con la nueva
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(this, "Archivo no encontrado: " + ruta);
         } catch (IOException e) {
@@ -238,7 +260,9 @@ public class ConsultaCupones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        main.Libreria.guardarTodo(); // <- guarda todo
         this.dispose();
+        
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

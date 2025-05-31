@@ -4,15 +4,18 @@
  */
 package modelos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mynor
  */
-public class Proveedor {
+public class Proveedor implements Serializable {
+    private static final long serialVersionUID = 1L;
     
+    public String nombre;
     public String nit;
     public String direccion;
-    public String nombre;
     public String telefono;
 
     
