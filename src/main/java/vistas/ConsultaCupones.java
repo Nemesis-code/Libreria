@@ -50,7 +50,7 @@ public class ConsultaCupones extends javax.swing.JFrame {
             modelo.addRow(fila);// Agregarla al modelo
         }
         // Establecer el modelo de la tabla con los datos cargados
-        tblDatos.setModel(modelo);
+        tablaCupones.setModel(modelo);
     }
     /**
      * Método que guarda la lista actual de cupones en un archivo CSV.
@@ -116,7 +116,7 @@ public class ConsultaCupones extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDatos = new javax.swing.JTable();
+        tablaCupones = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
         btnCargar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -132,7 +132,7 @@ public class ConsultaCupones extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tblDatos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCupones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -143,7 +143,7 @@ public class ConsultaCupones extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblDatos);
+        jScrollPane1.setViewportView(tablaCupones);
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -266,7 +266,7 @@ public class ConsultaCupones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int filaSeleccionada = tblDatos.getSelectedRow();
+        int filaSeleccionada = tablaCupones.getSelectedRow();
         if (filaSeleccionada >= 0) {
             if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar?") == JOptionPane.YES_OPTION) {
                 Libreria.cupones.remove(filaSeleccionada);
@@ -341,7 +341,7 @@ public class ConsultaCupones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblDatos;
+    private javax.swing.JTable tablaCupones;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables

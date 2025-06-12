@@ -1,10 +1,14 @@
 package vistas;
 
-public class VentanaAdministrador extends javax.swing.JFrame {
 
+
+public class VentanaAdministrador extends javax.swing.JFrame {
+    
+   
     public VentanaAdministrador() {
         initComponents();
         this.setLocationRelativeTo(null); // Esto la centra la ventana
+        
     }
 
     /**

@@ -40,7 +40,7 @@ public class ReporteVentas extends javax.swing.JFrame {
             modelo.addRow(fila);
 
         }
-        jTable1.setModel(modelo);
+        tablaReporte.setModel(modelo);
 
     }
 
@@ -54,13 +54,13 @@ public class ReporteVentas extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        tablaReporte = new javax.swing.JTable();
+        btnSalir = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaReporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -71,12 +71,12 @@ public class ReporteVentas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaReporte);
 
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -92,34 +92,34 @@ public class ReporteVentas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(160, 160, 160)
-                        .addComponent(btnExportar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(btnExportar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnSalir)
                     .addComponent(btnExportar))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         main.Libreria.guardarTodo(); // <- guarda todo
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         // TODO add your handling code here:
@@ -133,14 +133,14 @@ public class ReporteVentas extends javax.swing.JFrame {
             try (java.io.PrintWriter writer = new java.io.PrintWriter(archivo)) {
                 writer.println("Cliente|NIT|Dirección|Total|Total sin IVA|Vendedor|Fecha");
 
-                for (int i = 0; i < jTable1.getRowCount(); i++) {
-                    String cliente = jTable1.getValueAt(i, 0).toString();
-                    String nit = jTable1.getValueAt(i, 1).toString();
-                    String direccion = jTable1.getValueAt(i, 2).toString();
-                    String total = jTable1.getValueAt(i, 3).toString();
-                    String sinIva = jTable1.getValueAt(i, 4).toString();
-                    String vendedor = jTable1.getValueAt(i, 5).toString();
-                    String fecha = jTable1.getValueAt(i, 6).toString();
+                for (int i = 0; i < tablaReporte.getRowCount(); i++) {
+                    String cliente = tablaReporte.getValueAt(i, 0).toString();
+                    String nit = tablaReporte.getValueAt(i, 1).toString();
+                    String direccion = tablaReporte.getValueAt(i, 2).toString();
+                    String total = tablaReporte.getValueAt(i, 3).toString();
+                    String sinIva = tablaReporte.getValueAt(i, 4).toString();
+                    String vendedor = tablaReporte.getValueAt(i, 5).toString();
+                    String fecha = tablaReporte.getValueAt(i, 6).toString();
 
                     writer.println(cliente + "|" + nit + "|" + direccion + "|" + total + "|" + sinIva + "|" + vendedor + "|" + fecha);
                 }
@@ -155,8 +155,8 @@ public class ReporteVentas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExportar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaReporte;
     // End of variables declaration//GEN-END:variables
 }
